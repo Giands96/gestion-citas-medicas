@@ -1,3 +1,46 @@
+server:
+    port: ${SERVER_PORT:8081}
+
 spring:
   application:
     name: auth-service
+
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/auth_db}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:root123}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: ${JPA_DDL_AUTO:update}
+    open-in-view: false
+    properties:
+        hibernate:
+            format_sql: true
+  # Configurar SQL init mode never para evitar problemas con la creación de tablas en PostgreSQL
+  sql:
+    init:
+      mode:never
+  # Eureka Client Configuracion
+  eureka:
+    client:
+      service-url:
+        defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka/}
+      instance:
+        prefer-ip-address: true
+
+  # Administracion y Monitoreo
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: health,info
+    endpoint:
+      health:
+        probes:
+          enabled: true
+  # JWT Configuracion
+  security:
+    jwt:
+        secret: ${JWT_SECRET:PrOY3ct0nlyS3cr3tK3y}
+        expiration: ${JWT_EXPIRATION:86400000}
