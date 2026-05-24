@@ -1,0 +1,55 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true
+              lower-case-service-id: true
+          routes:
+              # DEFINIR RUTAS DE LOS MICROSERVICIOS
+              # RUTA AUTHENTICATION
+            - id: auth-service
+              uri: lb://auth-service
+              predicates:
+                - Path=/auth/**
+              # RUTA USER
+            - id: user-service
+              uri: lb://user-service
+              predicates:
+                - Path=/api/users/**,/api/pacientes/**,/api/doctores/**
+              # RUTA CITA
+            - id: cita-service
+              uri: lb://cita-service
+              predicates:
+                  - Path=/api/citas/**
+              # RUTA MEDICAL
+            - id: medical-service
+              uri: lb://medical-service
+              predicates:
+                  - Path=/api/medicals/**
+              # RUTA NOTIFICACION
+            - id: notification-service
+              uri: lb://notification-service
+              predicates:
+                  - Path=/api/notifications/**
+# Config Eureka Cliente
+eureka:
+    client:
+        service-url:
+          defaultZone: http://localhost:8761/eureka/
+        register-with-eureka: true
+        fetch-registry: true
+# Configuración de Actuator para exponer endpoints de salud e información
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway
