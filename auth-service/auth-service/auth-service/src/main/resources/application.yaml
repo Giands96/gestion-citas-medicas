@@ -1,3 +1,32 @@
+server:
+  port: 8081
 spring:
   application:
     name: auth-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/sistema_medico_db?currentSchema=auth_schema
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:password}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+        ddl-auto: update
+    show-sql: true
+    properties:
+        hibernate:
+          format_sql: true
+          default_schema: auth_schema
+eureka:
+    client:
+      service-url:
+        defaultZone: http://localhost:8761/eureka/
+        register-with-eureka: true
+        fetch-registry: true
+management:
+    endpoints:
+        web:
+            exposure:
+                include: health,info
+jwt:
+  secret: Zd2W3jBD8D2xFUSNPywUHDFeuFunANkdKKnaIQzFjbj
+  expiration: 3600000
