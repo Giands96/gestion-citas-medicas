@@ -1,45 +1,51 @@
 server:
-    port: ${SERVER_PORT:8081}
+  port: ${SERVER_PORT:8081}
 
 spring:
+  flyway:
+    enabled: true
+    schemas: auth_service
+    default-schema: auth_service
+    locations: classpath:db/migration
+    baseline-on-migrate: true
   application:
     name: auth-service
 
   datasource:
-    url: ${DB_URL:jdbc:postgresql://localhost:5433/auth_service}
+    url: jdbc:postgresql://localhost:5433/clinica_db?currentSchema=auth_service
     username: ${DB_USERNAME:admin}
     password: ${DB_PASSWORD:admin123}
     driver-class-name: org.postgresql.Driver
+
   jpa:
     hibernate:
       ddl-auto: ${JPA_DDL_AUTO:update}
     open-in-view: false
     properties:
-        hibernate:
-            format_sql: true
+      hibernate:
+        format_sql: true
+
   sql:
     init:
-      mode:never
-  # Eureka Client Configuracion
-  eureka:
-    client:
-      service-url:
-        defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka/}
-      instance:
-        prefer-ip-address: true
+      mode: never
 
-  # Administracion y Monitoreo
-  management:
-    endpoints:
-      web:
-        exposure:
-          include: health,info
-    endpoint:
-      health:
-        probes:
-          enabled: true
-  # JWT Configuracion
-  security:
-    jwt:
-        secret: ${JWT_SECRET:PrOY3ct0nlyS3cr3tK3y}
-        expiration: ${JWT_EXPIRATION:86400000}
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka/}
+  instance:
+    prefer-ip-address: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+jwt:
+  secret: ${JWT_SECRET:PrOY3ct0nlyS3cr3tK3yPrOY3ct0nlyS3cr3tK3y}
+  expiration: ${JWT_EXPIRATION:86400000}
