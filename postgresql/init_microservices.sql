@@ -1,22 +1,13 @@
--- ============================================================
--- INIT SCRIPT - SISTEMA GESTIÓN MÉDICA CON MICROSERVICIOS
--- PostgreSQL
--- Enfoque académico:
--- - Una sola base de datos física: clinica_db
--- - Un schema por microservicio
--- - Sin foreign keys entre schemas/microservicios
--- - Cada servicio es dueño de sus propias tablas
--- ============================================================
 
 -- ============================================================
 -- SCHEMAS POR MICROSERVICIO
 -- ============================================================
-CREATE SCHEMA IF NOT EXISTS auth_service;
-CREATE SCHEMA IF NOT EXISTS patient_service;
-CREATE SCHEMA IF NOT EXISTS doctor_service;
-CREATE SCHEMA IF NOT EXISTS appointment_service;
-CREATE SCHEMA IF NOT EXISTS report_service;
-CREATE SCHEMA IF NOT EXISTS notification_service;
+CREATE SCHEMA IF NOT EXISTS auth_schema;
+CREATE SCHEMA IF NOT EXISTS patient_schema;
+CREATE SCHEMA IF NOT EXISTS doctor_schema;
+CREATE SCHEMA IF NOT EXISTS appointment_schema;
+CREATE SCHEMA IF NOT EXISTS report_schema;
+CREATE SCHEMA IF NOT EXISTS notification_schema;
 
 -- ============================================================
 -- AUTH SERVICE
