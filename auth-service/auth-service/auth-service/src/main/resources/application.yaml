@@ -4,9 +4,9 @@ spring:
   application:
     name: auth-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/sistema_medico_db?currentSchema=auth_schema
-    username: ${DB_USERNAME:postgres}
-    password: ${DB_PASSWORD:password}
+    url: jdbc:postgresql://localhost:5433/clinica_db?currentSchema=auth_schema
+    username: admin
+    password: admin123e
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
