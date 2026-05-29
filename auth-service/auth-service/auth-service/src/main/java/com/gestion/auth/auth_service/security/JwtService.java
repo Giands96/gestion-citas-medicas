@@ -6,6 +6,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
@@ -47,8 +48,11 @@ public class JwtService {
         return extractAllClaims(token).get("role", String.class);
     }
 
-    public boolean isTokenValid(String token) {
-        return !isTokenExpired(token);
+    public boolean isTokenValid(String token, UserDetails userDetails) {
+        String correo = extractCorreo(token);
+
+        return correo.equals(userDetails.getUsername())
+                && !isTokenExpired(token);
     }
 
     private boolean isTokenExpired(String token) {
