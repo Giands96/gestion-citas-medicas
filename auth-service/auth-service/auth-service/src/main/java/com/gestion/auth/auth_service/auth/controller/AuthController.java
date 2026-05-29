@@ -34,6 +34,7 @@ public class AuthController {
             @Valid @RequestBody CrearCredencialRequest request
     ) {
         CredencialResponse response = authService.createCredential(request);
+
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 }

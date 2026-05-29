@@ -6,6 +6,8 @@ import com.gestion.auth.auth_service.auth.dto.LoginRequest;
 import com.gestion.auth.auth_service.auth.dto.LoginResponse;
 import com.gestion.auth.auth_service.credential.entity.Credencial;
 import com.gestion.auth.auth_service.credential.repository.CredencialRepository;
+import com.gestion.auth.auth_service.exceptions.EmailAlreadyExists;
+import com.gestion.auth.auth_service.exceptions.GlobalExceptionHandler;
 import com.gestion.auth.auth_service.role.entity.Rol;
 import com.gestion.auth.auth_service.role.repository.RolRepository;
 import com.gestion.auth.auth_service.security.JwtService;
@@ -44,7 +46,7 @@ public class AuthService {
 
     public CredencialResponse createCredential(CrearCredencialRequest request) {
         if (credencialRepository.existsByCorreo(request.correo())) {
-            throw new IllegalArgumentException("El correo ya tiene credenciales registradas");
+            throw new EmailAlreadyExists("Ya existe este usuario");
         }
 
         if (credencialRepository.existsByUserId(request.userId())) {
