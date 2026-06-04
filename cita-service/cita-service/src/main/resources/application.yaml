@@ -1,3 +1,10 @@
 spring:
   application:
     name: cita-service
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/clinica_db
+    username: admin
+    password: admin123
+  flyway:
+    baseline-on-migrate: true
