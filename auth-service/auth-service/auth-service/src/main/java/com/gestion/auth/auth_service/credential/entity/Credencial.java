@@ -1,6 +1,7 @@
 package com.gestion.auth.auth_service.credential.entity;
 
-import com.gestion.auth.auth_service.role.entity.Rol;
+import com.gestion.auth.auth_service.role.Rol;
+
 import jakarta.persistence.*;
 import lombok.*;
 
