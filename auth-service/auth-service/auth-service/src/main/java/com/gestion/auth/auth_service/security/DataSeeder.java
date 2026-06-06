@@ -25,6 +25,20 @@ public class DataSeeder implements CommandLineRunner {
     @Override
     public void run(String... args) {
 
+        Rol rolPaciente = rolRepository.findByNombre("PACIENTE")
+                .orElseGet(() -> rolRepository.save(
+                        Rol.builder()
+                                .nombre("PACIENTE")
+                                .build()
+                ));
+
+        Rol rolMedico = rolRepository.findByNombre("MEDICO")
+                .orElseGet(() -> rolRepository.save(
+                        Rol.builder()
+                                .nombre("MEDICO")
+                                .build()
+                ));
+
         Rol rolAdmin = rolRepository.findByNombre(ROL_ADMIN)
                 .orElseGet(() -> rolRepository.save(
                         Rol.builder()
