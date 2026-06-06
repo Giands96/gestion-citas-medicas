@@ -1,10 +1,6 @@
 server:
-<<<<<<< HEAD
-  port: 8081
-=======
   port: ${SERVER_PORT:8081}
 
->>>>>>> 81bc27fe0277ae7b3f1f82d338159dd0ef0db363
 spring:
   flyway:
     enabled: true
@@ -14,53 +10,24 @@ spring:
     baseline-on-migrate: true
   application:
     name: auth-service
-<<<<<<< HEAD
+
   datasource:
-    url: jdbc:postgresql://localhost:5433/clinica_db?currentSchema=auth_schema
+    url: jdbc:postgresql://localhost:5433/clinica_db?currentSchema=auth_service
     username: admin
-    password: admin123e
+    password: admin123
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-        ddl-auto: update
+        ddl-auto: create-drop
     show-sql: true
     properties:
         hibernate:
           format_sql: true
-          default_schema: auth_schema
-eureka:
-    client:
-      service-url:
-        defaultZone: http://localhost:8761/eureka/
-        register-with-eureka: true
-        fetch-registry: true
-management:
-    endpoints:
-        web:
-            exposure:
-                include: health,info
+          default_schema: auth_service
+
 jwt:
   secret: Zd2W3jBD8D2xFUSNPywUHDFeuFunANkdKKnaIQzFjbj
   expiration: 3600000
-=======
-
-  datasource:
-    url: jdbc:postgresql://localhost:5433/clinica_db?currentSchema=auth_service
-    username: ${DB_USERNAME:admin}
-    password: ${DB_PASSWORD:admin123}
-    driver-class-name: org.postgresql.Driver
-
-  jpa:
-    hibernate:
-      ddl-auto: ${JPA_DDL_AUTO:update}
-    open-in-view: false
-    properties:
-      hibernate:
-        format_sql: true
-
-  sql:
-    init:
-      mode: never
 
 eureka:
   client:
@@ -78,8 +45,3 @@ management:
     health:
       probes:
         enabled: true
-
-jwt:
-  secret: ${JWT_SECRET:PrOY3ct0nlyS3cr3tK3yPrOY3ct0nlyS3cr3tK3y}
-  expiration: ${JWT_EXPIRATION:86400000}
->>>>>>> 81bc27fe0277ae7b3f1f82d338159dd0ef0db363

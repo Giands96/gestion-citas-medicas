@@ -1,15 +1,4 @@
-<<<<<<< HEAD
 
--- ============================================================
--- SCHEMAS POR MICROSERVICIO
--- ============================================================
-CREATE SCHEMA IF NOT EXISTS auth_schema;
-CREATE SCHEMA IF NOT EXISTS patient_schema;
-CREATE SCHEMA IF NOT EXISTS doctor_schema;
-CREATE SCHEMA IF NOT EXISTS appointment_schema;
-CREATE SCHEMA IF NOT EXISTS report_schema;
-CREATE SCHEMA IF NOT EXISTS notification_schema;
-=======
 -- ============================================================
 -- SCHEMAS POR MICROSERVICIO
 -- ============================================================
@@ -21,7 +10,6 @@ CREATE SCHEMA IF NOT EXISTS doctor_service;
 CREATE SCHEMA IF NOT EXISTS appointment_service;
 CREATE SCHEMA IF NOT EXISTS report_service;
 CREATE SCHEMA IF NOT EXISTS notification_service;
->>>>>>> 81bc27fe0277ae7b3f1f82d338159dd0ef0db363
 
 -- ============================================================
 -- USER SERVICE
