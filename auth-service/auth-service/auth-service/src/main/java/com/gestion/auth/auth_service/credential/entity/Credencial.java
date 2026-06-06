@@ -4,11 +4,13 @@ import com.gestion.auth.auth_service.role.Rol;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "credenciales")
+@Table(name = "credenciales", schema = "auth_service")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -33,12 +35,15 @@ public class Credencial {
     @JoinColumn(name = "rol_id", nullable = false)
     private Rol rol;
 
+    @Builder.Default
     @Column(nullable = false)
-    private Boolean activo;
+    private Boolean activo = true;
 
+    @CreationTimestamp
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
+    @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 }
