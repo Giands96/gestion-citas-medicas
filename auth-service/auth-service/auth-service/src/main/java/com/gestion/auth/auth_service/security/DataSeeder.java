@@ -25,12 +25,15 @@ public class DataSeeder implements CommandLineRunner {
     @Override
     public void run(String... args) {
 
+
+        // Crear el rol PACIENTE si no existe
         Rol rolPaciente = rolRepository.findByNombre("PACIENTE")
                 .orElseGet(() -> rolRepository.save(
                         Rol.builder()
                                 .nombre("PACIENTE")
                                 .build()
                 ));
+        // Crear el rol MEDICO si no existe
 
         Rol rolMedico = rolRepository.findByNombre("MEDICO")
                 .orElseGet(() -> rolRepository.save(
@@ -38,6 +41,8 @@ public class DataSeeder implements CommandLineRunner {
                                 .nombre("MEDICO")
                                 .build()
                 ));
+
+        // Crear el rol ADMINISTRADOR si no existe
 
         Rol rolAdmin = rolRepository.findByNombre(ROL_ADMIN)
                 .orElseGet(() -> rolRepository.save(
