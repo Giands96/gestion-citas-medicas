@@ -110,13 +110,21 @@
 			<artifactId>spring-boot-starter-webmvc-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+<<<<<<< HEAD
         <!-- JWT -->
+=======
+        <!-- JWT API -->
+>>>>>>> 81bc27fe0277ae7b3f1f82d338159dd0ef0db363
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-api</artifactId>
             <version>0.12.6</version>
         </dependency>
 
+<<<<<<< HEAD
+=======
+        <!-- Implementación JWT -->
+>>>>>>> 81bc27fe0277ae7b3f1f82d338159dd0ef0db363
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-impl</artifactId>
@@ -124,6 +132,10 @@
             <scope>runtime</scope>
         </dependency>
 
+<<<<<<< HEAD
+=======
+        <!-- Soporte JSON con Jackson -->
+>>>>>>> 81bc27fe0277ae7b3f1f82d338159dd0ef0db363
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-jackson</artifactId>
