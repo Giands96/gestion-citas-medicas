@@ -16,29 +16,44 @@ public class UsuarioController {
 
     private final UsuarioService usuarioService;
 
+    //Para listar todos los usuarios
     @GetMapping
-    public ResponseEntity<List<UsuarioDto>> getAllUsuarios() {
-        return ResponseEntity.ok(usuarioService.getAllUsuarios());
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<List<UsuarioResponse>> listarUsuario() {
+        List<UsuarioResponse> lista = usuarioService.listarTodos();
+        return ResponseEntity.ok(lista);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<UsuarioDto> getUsuarioById(@PathVariable Long id) {
-        return ResponseEntity.ok(usuarioService.getUsuarioById(id));
-    }
-
+    // Para Crear usuarios
     @PostMapping
-    public ResponseEntity<UsuarioDto> createUsuario(@RequestBody UsuarioDto usuarioDto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.createUsuario(usuarioDto));
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<UsuarioResponse> crear(
+            @Valid @RequestBody UsuarioRequest request) {
+        return new ResponseEntity<>(usuarioService.crearUsuario(request), HttpStatus.CREATED);
     }
 
+    // Para buscar usuarios
+    @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<UsuarioResponse> obtenerPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(usuarioService.obtenerPorId(id));
+    }
+
+    // Para actualizar usuarios
     @PutMapping("/{id}")
-    public ResponseEntity<UsuarioDto> updateUsuario(@PathVariable Long id, @RequestBody UsuarioDto usuarioDto) {
-        return ResponseEntity.ok(usuarioService.updateUsuario(id, usuarioDto));
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<UsuarioResponse> actualizar(
+            @PathVariable Long id,
+            @Valid @RequestBody UsuarioRequest request) {
+        return ResponseEntity.ok(usuarioService.actualizarUsuario(id, request));
     }
 
+    // Para eliminar usuarios
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUsuario(@PathVariable Long id) {
-        usuarioService.deleteUsuario(id);
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Void> eliminar(@PathVariable Long id) {
+        usuarioService.eliminarUsuario(id);
         return ResponseEntity.noContent().build();
     }
 }
+>>>>>>> main

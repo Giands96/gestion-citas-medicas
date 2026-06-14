@@ -1,37 +1,56 @@
 package com.gestion.user.user_service.entity;
-
+import com.gestion.user.user_service.enums.TipoUsuario;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Data
 @Entity
-@Table(name = "pacientes", schema = "patient_service")
+@Table(name = "usuarios", schema = "user_service")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Usuario {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "usuario_id", nullable = false, unique = true)
-    private Long usuarioId;
+    @Column(nullable = false, length = 100)
+    private String nombres;
 
-    @Column(name = "dni", nullable = false, unique = true)
-    private String dni;
+    @Column(nullable = false, length = 150)
+    private String apellidos;
 
-    @Column(name = "fecha_nacimiento", nullable = false)
-    private LocalDate fechaNacimiento;
+    @Column(length = 20)
+    private String telefono;
 
-    @Column(name = "direccion")
+    @Column(length = 255)
     private String direccion;
 
-    @Column(name = "activo")
+    private LocalDate fechaNacimiento;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 50)
+    private TipoUsuario tipoUsuario;
+
+    @Column(nullable = false)
     private Boolean activo = true;
 
-    @Column(name = "created_at")
+    @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    // campos de auditoria
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = LocalDateTime.now();
+    }
 }
