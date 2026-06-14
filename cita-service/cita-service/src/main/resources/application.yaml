@@ -1,10 +1,37 @@
+server:
+    port: 8083
 spring:
   application:
     name: cita-service
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/clinica_db
+    url: jdbc:postgresql://localhost:5433/clinica_db
     username: admin
     password: admin123
   flyway:
     baseline-on-migrate: true
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        default_schema: appointment_service
+    open-in-view: false
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+
+jwt:
+  secret: ${JWT_SECRET:PrOY3ct0nlyS3cr3tK3yPrOY3ct0nlyS3cr3tK3y}
+  expiration: ${JWT_EXPIRATION:86400000}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

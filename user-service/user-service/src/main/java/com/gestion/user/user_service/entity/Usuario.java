@@ -1,5 +1,5 @@
 package com.gestion.user.user_service.entity;
-import com.gestion.user.user_service.enums.TipoUsuario;
+import com.gestion.user.user_service.enums.Rol;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
@@ -32,8 +32,8 @@ public class Usuario {
     private LocalDate fechaNacimiento;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 50)
-    private TipoUsuario tipoUsuario;
+    @Column(name = "tipo_usuario", nullable = false, length = 50)
+    private Rol rol;
 
     @Column(nullable = false)
     private Boolean activo = true;

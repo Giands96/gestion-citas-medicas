@@ -2,13 +2,13 @@ package com.gestion.cita.cita_service.service;
 
 import java.util.List;
 
-import com.gestion.cita.cita_service.dto.CitaDto;
+import com.gestion.cita.cita_service.dto.CitaRequest;
+import com.gestion.cita.cita_service.dto.CitaResponse;
 
 public interface CitaService {
-    
-    public void createCita(CitaDto citaDto);
-    public CitaDto updateCita(Long id, CitaDto citaDto);
-    public CitaDto getCitaById(Long id);
-    public void deleteCita(Long id);
-    public List<CitaDto> getAllCitas();
+    CitaResponse createCita(CitaRequest request);
+    CitaResponse updateCita(Long id, CitaRequest request);
+    CitaResponse getCitaById(Long id);
+    void deleteCita(Long id);
+    List<CitaResponse> getAllCitas();
 }

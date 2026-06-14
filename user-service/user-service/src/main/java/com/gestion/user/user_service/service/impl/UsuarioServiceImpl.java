@@ -1,10 +1,10 @@
 package com.gestion.user.user_service.service.impl;
 
+import com.gestion.user.user_service.client.AuthServiceClient;
+import com.gestion.user.user_service.client.dto.CredencialRequest;
 import com.gestion.user.user_service.dto.request.UsuarioRequest;
 import com.gestion.user.user_service.dto.response.UsuarioResponse;
 import com.gestion.user.user_service.entity.Usuario;
-import com.gestion.user.user_service.enums.TipoUsuario;
-import com.gestion.user.user_service.exception.DuplicateResourceException;
 import com.gestion.user.user_service.exception.ResourceNotFoundException;
 import com.gestion.user.user_service.repository.UsuarioRepository;
 import com.gestion.user.user_service.service.UsuarioService;
@@ -22,11 +22,21 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     private final UsuarioRepository repository;
     private final ModelMapper mapper;
+    private final AuthServiceClient authServiceClient;
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public UsuarioResponse crearUsuario(UsuarioRequest request) {
         Usuario usuario = mapper.map(request, Usuario.class);
         Usuario guardado = repository.save(usuario);
+
+        CredencialRequest credencialRequest = new CredencialRequest(
+                guardado.getId(),
+                request.getCorreo(),
+                request.getPassword(),
+                request.getRol().name()
+        );
+        authServiceClient.createCredential(credencialRequest);
 
         return mapper.map(guardado, UsuarioResponse.class);
     }
