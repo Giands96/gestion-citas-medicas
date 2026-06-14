@@ -1,40 +1,17 @@
 package com.gestion.auth.auth_service.security;
 
-<<<<<<< HEAD
 import com.gestion.auth.auth_service.credential.service.CredencialService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
-=======
-import com.gestion.auth.auth_service.auth.dto.CrearCredencialRequest;
-import com.gestion.auth.auth_service.credential.repository.CredencialRepository;
-import com.gestion.auth.auth_service.credential.service.CredencialService;
+
 import com.gestion.auth.auth_service.role.Rol;
 import com.gestion.auth.auth_service.role.repository.RolRepository;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.security.crypto.password.PasswordEncoder;
->>>>>>> 767fbb8b4f84c982d2e8b67fdc15a3d48fb326dc
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-<<<<<<< HEAD
-public class DataSeeder extends CommandLineRunner {
 
-    private final CredencialService credencialService;
-
-    String correoAdmin = "admin@email.com";
-
-    String passwordAdmin = "admin123";
-
-    @Override
-    public void run(String... args) throws Exception  {
-
-    }
-
-}
-=======
 public class DataSeeder implements CommandLineRunner {
 
     private final RolRepository rolRepository;
@@ -90,4 +67,3 @@ public class DataSeeder implements CommandLineRunner {
         System.out.println("Rol: " + ROL_ADMIN);
     }
 }
->>>>>>> 767fbb8b4f84c982d2e8b67fdc15a3d48fb326dc
