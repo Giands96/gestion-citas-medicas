@@ -1,13 +1,25 @@
 package com.gestion.auth.auth_service.security;
 
+<<<<<<< HEAD
 import com.gestion.auth.auth_service.credential.service.CredencialService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
+=======
+import com.gestion.auth.auth_service.auth.dto.CrearCredencialRequest;
+import com.gestion.auth.auth_service.credential.repository.CredencialRepository;
+import com.gestion.auth.auth_service.credential.service.CredencialService;
+import com.gestion.auth.auth_service.role.Rol;
+import com.gestion.auth.auth_service.role.repository.RolRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
+>>>>>>> 767fbb8b4f84c982d2e8b67fdc15a3d48fb326dc
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
+<<<<<<< HEAD
 public class DataSeeder extends CommandLineRunner {
 
     private final CredencialService credencialService;
@@ -22,3 +34,60 @@ public class DataSeeder extends CommandLineRunner {
     }
 
 }
+=======
+public class DataSeeder implements CommandLineRunner {
+
+    private final RolRepository rolRepository;
+    private final CredencialService credencialService;
+
+    private static final Long USER_ID_ADMIN = 1L;
+    private static final String CORREO_ADMIN = "admin@email.com";
+    private static final String PASSWORD_ADMIN = "admin123";
+    private static final String ROL_ADMIN = "ADMINISTRADOR";
+
+    @Override
+    public void run(String... args) {
+
+
+        // Crear el rol PACIENTE si no existe
+        Rol rolPaciente = rolRepository.findByNombre("PACIENTE")
+                .orElseGet(() -> rolRepository.save(
+                        Rol.builder()
+                                .nombre("PACIENTE")
+                                .build()
+                ));
+        // Crear el rol MEDICO si no existe
+
+        Rol rolMedico = rolRepository.findByNombre("MEDICO")
+                .orElseGet(() -> rolRepository.save(
+                        Rol.builder()
+                                .nombre("MEDICO")
+                                .build()
+                ));
+
+        // Crear el rol ADMINISTRADOR si no existe
+
+        Rol rolAdmin = rolRepository.findByNombre(ROL_ADMIN)
+                .orElseGet(() -> rolRepository.save(
+                        Rol.builder()
+                                .nombre(ROL_ADMIN)
+                                .build()
+                ));
+
+        if (!credencialService.existsByCorreo(CORREO_ADMIN)) {
+            credencialService.crearAdminInicial(
+                    USER_ID_ADMIN,
+                    CORREO_ADMIN,
+                    PASSWORD_ADMIN,
+                    rolAdmin
+            );
+        }
+
+        System.out.println("Datos Iniciales Creados: Rol ADMINISTRADOR y Usuario");
+        System.out.println("User ID: " + USER_ID_ADMIN);
+        System.out.println("Correo: " + CORREO_ADMIN);
+        System.out.println("Password: " + PASSWORD_ADMIN);
+        System.out.println("Rol: " + ROL_ADMIN);
+    }
+}
+>>>>>>> 767fbb8b4f84c982d2e8b67fdc15a3d48fb326dc
