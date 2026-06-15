@@ -48,15 +48,10 @@ public class AuthService {
             throw new EmailAlreadyExists("Ya existe este usuario");
         }
 
-        if (credencialRepository.existsByUserId(request.userId())) {
-            throw new IllegalArgumentException("El usuario ya tiene credenciales registradas");
-        }
-
         Rol role = rolRepository.findByNombre(request.rol())
                 .orElseThrow(() -> new IllegalArgumentException("El rol no existe"));
 
         Credencial credential = Credencial.builder()
-                .userId(request.userId())
                 .correo(request.correo())
                 .password(passwordEncoder.encode(request.password()))
                 .rol(role)
