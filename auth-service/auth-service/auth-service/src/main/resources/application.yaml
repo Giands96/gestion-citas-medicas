@@ -13,21 +13,21 @@ spring:
 
   datasource:
     url: jdbc:postgresql://localhost:5433/clinica_db?currentSchema=auth_service
-    username: ${DB_USERNAME:admin}
-    password: ${DB_PASSWORD:admin123}
+    username: admin
+    password: admin123
     driver-class-name: org.postgresql.Driver
-
   jpa:
     hibernate:
-      ddl-auto: ${JPA_DDL_AUTO:update}
-    open-in-view: false
+        ddl-auto: create-drop
+    show-sql: true
     properties:
-      hibernate:
-        format_sql: true
+        hibernate:
+          format_sql: true
+          default_schema: auth_service
 
-  sql:
-    init:
-      mode: never
+jwt:
+  secret: Zd2W3jBD8D2xFUSNPywUHDFeuFunANkdKKnaIQzFjbj
+  expiration: 3600000
 
 eureka:
   client:
@@ -45,7 +45,3 @@ management:
     health:
       probes:
         enabled: true
-
-jwt:
-  secret: ${JWT_SECRET:PrOY3ct0nlyS3cr3tK3yPrOY3ct0nlyS3cr3tK3y}
-  expiration: ${JWT_EXPIRATION:86400000}

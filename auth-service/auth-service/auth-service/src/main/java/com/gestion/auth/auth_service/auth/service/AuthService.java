@@ -7,8 +7,7 @@ import com.gestion.auth.auth_service.auth.dto.LoginResponse;
 import com.gestion.auth.auth_service.credential.entity.Credencial;
 import com.gestion.auth.auth_service.credential.repository.CredencialRepository;
 import com.gestion.auth.auth_service.exceptions.EmailAlreadyExists;
-import com.gestion.auth.auth_service.exceptions.GlobalExceptionHandler;
-import com.gestion.auth.auth_service.role.entity.Rol;
+import com.gestion.auth.auth_service.role.Rol;
 import com.gestion.auth.auth_service.role.repository.RolRepository;
 import com.gestion.auth.auth_service.security.JwtService;
 import lombok.RequiredArgsConstructor;
@@ -49,15 +48,10 @@ public class AuthService {
             throw new EmailAlreadyExists("Ya existe este usuario");
         }
 
-        if (credencialRepository.existsByUserId(request.userId())) {
-            throw new IllegalArgumentException("El usuario ya tiene credenciales registradas");
-        }
-
         Rol role = rolRepository.findByNombre(request.rol())
                 .orElseThrow(() -> new IllegalArgumentException("El rol no existe"));
 
         Credencial credential = Credencial.builder()
-                .userId(request.userId())
                 .correo(request.correo())
                 .password(passwordEncoder.encode(request.password()))
                 .rol(role)
