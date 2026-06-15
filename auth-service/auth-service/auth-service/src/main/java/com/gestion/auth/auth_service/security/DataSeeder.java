@@ -1,17 +1,17 @@
 package com.gestion.auth.auth_service.security;
 
-import com.gestion.auth.auth_service.auth.dto.CrearCredencialRequest;
-import com.gestion.auth.auth_service.credential.repository.CredencialRepository;
 import com.gestion.auth.auth_service.credential.service.CredencialService;
+import lombok.RequiredArgsConstructor;
+
 import com.gestion.auth.auth_service.role.Rol;
 import com.gestion.auth.auth_service.role.repository.RolRepository;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
+
 public class DataSeeder implements CommandLineRunner {
 
     private final RolRepository rolRepository;
