@@ -18,8 +18,13 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
+<<<<<<< HEAD
+      ddl-auto: ${JPA_DDL_AUTO:create-drop}
+    open-in-view: false
+=======
         ddl-auto: create-drop
     show-sql: true
+>>>>>>> 3ab1b89ea42e8cb2fade253cf1a2f59cdded8c2e
     properties:
         hibernate:
           format_sql: true

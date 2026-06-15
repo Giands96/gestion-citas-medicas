@@ -1,10 +1,13 @@
 package com.gestion.user.user_service.controller;
 
-import com.gestion.user.user_service.dto.UsuarioDto;
+import com.gestion.user.user_service.dto.request.UsuarioRequest;
+import com.gestion.user.user_service.dto.response.UsuarioResponse;
 import com.gestion.user.user_service.service.UsuarioService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,7 +16,6 @@ import java.util.List;
 @RequestMapping("/api/users")
 @RequiredArgsConstructor
 public class UsuarioController {
-
     private final UsuarioService usuarioService;
 
     //Para listar todos los usuarios
@@ -56,4 +58,3 @@ public class UsuarioController {
         return ResponseEntity.noContent().build();
     }
 }
->>>>>>> main

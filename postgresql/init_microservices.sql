@@ -233,6 +233,9 @@ ON notification_service.notificaciones(usuario_id);
 -- DATA INICIAL
 -- ============================================================
 
+-- Limpiar columna duplicada generada por Hibernate (migración)
+ALTER TABLE user_service.usuarios DROP COLUMN IF EXISTS rol;
+
 INSERT INTO auth_service.roles (nombre)
 VALUES
 ('ADMIN'),

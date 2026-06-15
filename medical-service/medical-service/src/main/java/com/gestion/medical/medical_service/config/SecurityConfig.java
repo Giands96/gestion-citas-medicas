@@ -1,4 +1,4 @@
-package com.gestion.medical.medical_service;
+package com.gestion.medical.medical_service.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

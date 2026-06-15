@@ -1,6 +1,6 @@
 package com.gestion.user.user_service.dto.response;
 
-import com.gestion.user.user_service.enums.TipoUsuario;
+import com.gestion.user.user_service.enums.Rol;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -15,7 +15,7 @@ public class UsuarioResponse {
     private String direccion;
     private LocalDate fechaNacimiento;
     private Boolean activo;
-    private TipoUsuario tipoUsuario;
+    private Rol rol;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

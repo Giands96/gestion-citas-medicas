@@ -23,7 +23,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return org.springframework.security.core.userdetails.User
                 .withUsername(usuario.getNombres())
                 .password("") // En el user-service no necesitas la contraseña
-                .roles(usuario.getTipoUsuario().name()) // Convierte tu Enum a String
+                .roles(usuario.getRol().name()) // Convierte tu Enum a String
                 .build();
     }
 }

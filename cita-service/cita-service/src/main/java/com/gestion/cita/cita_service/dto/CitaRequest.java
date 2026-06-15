@@ -1,27 +1,27 @@
 package com.gestion.cita.cita_service.dto;
 
+import jakarta.validation.constraints.*;
+import lombok.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-public class CitaDto {
-    private Long id;
+@Data @NoArgsConstructor @AllArgsConstructor
+public class CitaRequest {
+    @NotNull
     private Long pacienteId;
+
+    @NotNull
     private Long doctorId;
+
+    @NotNull
     private LocalDate fecha;
 
+    @NotNull
     private LocalTime hora;
 
+    @Size(max = 255)
     private String motivo;
+
+    @Size(max = 50)
     private String estado;
 }

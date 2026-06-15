@@ -1,6 +1,6 @@
 package com.gestion.user.user_service.dto.request;
 
-import com.gestion.user.user_service.enums.TipoUsuario;
+import com.gestion.user.user_service.enums.Rol;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
@@ -26,7 +26,15 @@ public class UsuarioRequest {
     private LocalDate fechaNacimiento;
 
     @NotNull(message = "El tipo de usuario es obligatorio")
-    private TipoUsuario tipoUsuario;
+    private Rol rol;
+
+    @NotBlank(message = "El correo es obligatorio")
+    @Email(message = "El correo debe tener un formato válido")
+    private String correo;
+
+    @NotBlank(message = "La contraseña es obligatoria")
+    @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres")
+    private String password;
 
     private Boolean activo = true;
 

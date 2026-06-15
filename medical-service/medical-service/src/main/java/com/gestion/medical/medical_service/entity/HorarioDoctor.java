@@ -3,28 +3,32 @@ package com.gestion.medical.medical_service.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
-@Table(name = "doctores", schema = "doctor_service")
+@Table(name = "horarios_doctor", schema = "doctor_service")
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
-public class Doctor {
+public class HorarioDoctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "usuario_id", nullable = false, unique = true)
-    private Long usuarioId;
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "especialidad_id", nullable = false)
-    private Especialidad especialidad;
+    @JoinColumn(name = "doctor_id", nullable = false)
+    private Doctor doctor;
 
-    @Column(nullable = false, unique = true, length = 50)
-    private String cmp;
+    @Column(name = "dia_semana", nullable = false, length = 20)
+    private String diaSemana;
+
+    @Column(name = "hora_inicio", nullable = false)
+    private LocalTime horaInicio;
+
+    @Column(name = "hora_fin", nullable = false)
+    private LocalTime horaFin;
 
     @Builder.Default
     @Column(nullable = false)
-    private Boolean disponible = true;
+    private Boolean activo = true;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;

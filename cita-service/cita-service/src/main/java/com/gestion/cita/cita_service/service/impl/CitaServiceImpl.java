@@ -1,46 +1,42 @@
 package com.gestion.cita.cita_service.service.impl;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.gestion.cita.cita_service.dto.CitaDto;
+import com.gestion.cita.cita_service.client.MedicalServiceClient;
+import com.gestion.cita.cita_service.client.UserServiceClient;
+import com.gestion.cita.cita_service.client.dto.DoctorResponse;
+import com.gestion.cita.cita_service.client.dto.UsuarioResponse;
+import com.gestion.cita.cita_service.dto.CitaRequest;
+import com.gestion.cita.cita_service.dto.CitaResponse;
 import com.gestion.cita.cita_service.entity.Cita;
 import com.gestion.cita.cita_service.errors.NoResponse;
 import com.gestion.cita.cita_service.repository.CitaRepository;
 import com.gestion.cita.cita_service.service.CitaService;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
+@Transactional
 public class CitaServiceImpl implements CitaService {
 
     private final CitaRepository citaRepository;
-
-    public CitaServiceImpl(CitaRepository citaRepository) {
-        this.citaRepository = citaRepository;
-    }
+    private final UserServiceClient userServiceClient;
+    private final MedicalServiceClient medicalServiceClient;
 
     @Override
-    public void createCita(CitaDto citaDto) {
-        Cita cita = mapperCita(citaDto);
-        citaRepository.save(cita);
-    }
-
-    @Override
-    public CitaDto updateCita(Long id, CitaDto citaDto) {
-        Cita cita = citaRepository.findById(id).orElseThrow(() -> new RuntimeException("Cita no encontrada"));
-        setUpdate(cita, citaDto);
-        Cita updatedCita = citaRepository.save(cita);
-        return CitaDto.builder()
-                .id(updatedCita.getId())
-                .pacienteId(updatedCita.getPacienteId())
-                .doctorId(updatedCita.getDoctorId())
-                .fecha(updatedCita.getFecha())
-                .hora(updatedCita.getHora())
-                .motivo(updatedCita.getMotivo())
-                .estado(updatedCita.getEstado())
+    public CitaResponse createCita(CitaRequest request) {
+        Cita cita = Cita.builder()
+                .pacienteId(request.getPacienteId())
+                .doctorId(request.getDoctorId())
+                .fecha(request.getFecha())
+                .hora(request.getHora())
+                .motivo(request.getMotivo())
+                .estado("PENDIENTE")
                 .build();
 
     }
@@ -55,50 +51,81 @@ public class CitaServiceImpl implements CitaService {
     }
 
     @Override
-    public CitaDto getCitaById(Long id) {
-        Cita cita = citaRepository.findById(id).orElseThrow(() -> new NoResponse("Cita no encontrada"));
-        return CitaDto.builder()
+    public CitaResponse updateCita(Long id, CitaRequest request) {
+        Cita cita = citaRepository.findById(id)
+                .orElseThrow(() -> new NoResponse("Cita no encontrada"));
+        cita.setPacienteId(request.getPacienteId());
+        cita.setDoctorId(request.getDoctorId());
+        cita.setFecha(request.getFecha());
+        cita.setHora(request.getHora());
+        cita.setMotivo(request.getMotivo());
+        if (request.getEstado() != null) {
+            cita.setEstado(request.getEstado());
+        }
+        return toResponse(citaRepository.save(cita));
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public CitaResponse getCitaById(Long id) {
+        Cita cita = citaRepository.findById(id)
+                .orElseThrow(() -> new NoResponse("Cita no encontrada"));
+        return toResponse(cita);
+    }
+
+    @Override
+    public void deleteCita(Long id) {
+        Cita cita = citaRepository.findById(id)
+                .orElseThrow(() -> new NoResponse("Cita no encontrada"));
+        citaRepository.delete(cita);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<CitaResponse> getAllCitas() {
+        return citaRepository.findAll().stream()
+                .map(this::toResponse)
+                .collect(Collectors.toList());
+    }
+
+    private CitaResponse toResponse(Cita cita) {
+        CitaResponse.CitaResponseBuilder builder = CitaResponse.builder()
                 .id(cita.getId())
                 .pacienteId(cita.getPacienteId())
                 .doctorId(cita.getDoctorId())
                 .fecha(cita.getFecha())
                 .hora(cita.getHora())
                 .motivo(cita.getMotivo())
-                .estado(cita.getEstado())
-                .build();
-    }
+                .estado(cita.getEstado());
 
-    private Cita mapperCita(CitaDto citaDto) {
-        Cita cita = new Cita();
-        cita.setPacienteId(citaDto.getPacienteId());
-        cita.setDoctorId(citaDto.getDoctorId());
-        cita.setFecha(LocalDate.now());
-        cita.setHora(LocalTime.now());
-        cita.setMotivo(citaDto.getMotivo());
-        cita.setEstado(citaDto.getEstado());
-        return cita;
-    }
+        try {
+            UsuarioResponse paciente = userServiceClient.obtenerUsuarioPorId(cita.getPacienteId());
+            builder.pacienteNombre(paciente.getNombres());
+            builder.pacienteApellido(paciente.getApellidos());
+        } catch (Exception e) {
+            builder.pacienteNombre("N/A");
+            builder.pacienteApellido("N/A");
+        }
 
-    @Override
-    public void deleteCita(Long id) {
-        Cita cita = citaRepository.findById(id).orElseThrow(() -> new NoResponse("Cita no encontrada"));
-        citaRepository.delete(cita);
-    }
+        try {
+            DoctorResponse doctor = medicalServiceClient.obtenerDoctorPorId(cita.getDoctorId());
+            builder.especialidadId(doctor.getEspecialidadId());
+            builder.especialidadNombre(doctor.getEspecialidadNombre());
 
-    @Override
-    public List<CitaDto> getAllCitas() {
-        List<Cita> citas = citaRepository.findAll();
-        return citas.stream()
-                .map(cita -> CitaDto.builder()
-                        .id(cita.getId())
-                        .pacienteId(cita.getPacienteId())
-                        .doctorId(cita.getDoctorId())
-                        .fecha(cita.getFecha())
-                        .hora(cita.getHora())
-                        .motivo(cita.getMotivo())
-                        .estado(cita.getEstado())
-                        .build())
-                .collect(Collectors.toList());
-    }
+            try {
+                UsuarioResponse doctorUser = userServiceClient.obtenerUsuarioPorId(doctor.getUsuarioId());
+                builder.doctorNombre(doctorUser.getNombres());
+                builder.doctorApellido(doctorUser.getApellidos());
+            } catch (Exception e) {
+                builder.doctorNombre("N/A");
+                builder.doctorApellido("N/A");
+            }
+        } catch (Exception e) {
+            builder.especialidadNombre("N/A");
+            builder.doctorNombre("N/A");
+            builder.doctorApellido("N/A");
+        }
 
+        return builder.build();
+    }
 }
