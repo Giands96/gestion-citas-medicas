@@ -2,12 +2,16 @@ package com.gestion.user.user_service.bootstrap;
 
 import com.gestion.user.user_service.client.AuthServiceClient;
 import com.gestion.user.user_service.client.dto.CredencialRequest;
+import com.gestion.user.user_service.dto.request.UsuarioRequest;
+import com.gestion.user.user_service.dto.response.UsuarioResponse;
 import com.gestion.user.user_service.entity.Usuario;
 import com.gestion.user.user_service.enums.Rol;
 import com.gestion.user.user_service.repository.UsuarioRepository;
+import com.gestion.user.user_service.service.UsuarioService;
 import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -23,35 +27,24 @@ public class DataSeeder implements CommandLineRunner {
     private static final String ADMIN_APELLIDOS = "Sistema";
     private static final String ADMIN_CORREO = "admin@email.com";
     private static final String ADMIN_PASSWORD = "admin123";
+    @Autowired
+    private UsuarioService usuarioService;
+
+
 
     @Override
     public void run(String... args) {
-        if (usuarioRepository.findByNombres(ADMIN_NOMBRES).isPresent()) {
-            log.info("Admin user already exists, skipping bootstrap");
-            return;
-        }
 
-        Usuario admin = Usuario.builder()
-                .nombres(ADMIN_NOMBRES)
-                .apellidos(ADMIN_APELLIDOS)
-                .rol(Rol.ADMIN)
-                .activo(true)
-                .build();
+        UsuarioRequest admin = new UsuarioRequest();
+        admin.setNombres(ADMIN_NOMBRES);
+        admin.setApellidos(ADMIN_APELLIDOS);
+        admin.setCorreo(ADMIN_CORREO);
+        admin.setPassword(ADMIN_PASSWORD);
+        admin.setRol(Rol.ADMIN);
+        UsuarioResponse guardado = usuarioService.crearUsuario(admin);
 
-        Usuario guardado = usuarioRepository.save(admin);
+        System.out.println("Usuario admin creado: " + guardado);
 
-        try {
-            CredencialRequest credencialRequest = new CredencialRequest(
-                    guardado.getId(),
-                    ADMIN_CORREO,
-                    ADMIN_PASSWORD,
-                    Rol.ADMIN.name()
-            );
-            authServiceClient.createCredential(credencialRequest);
-            log.info("USUARIO ADMIN CREADO: userId={}, email={}", guardado.getId(), ADMIN_CORREO);
-        } catch (FeignException e) {
-            log.error("ERROR AL CREAR CREDENCIAL: {}", e.getMessage());
-            usuarioRepository.delete(guardado);
-        }
+
     }
 }

@@ -21,4 +21,7 @@ public class CitaRequest {
 
     @Size(max = 255)
     private String motivo;
+
+    @Size(max = 50)
+    private String estado;
 }

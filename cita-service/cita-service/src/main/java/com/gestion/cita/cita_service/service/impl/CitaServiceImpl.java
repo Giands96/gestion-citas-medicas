@@ -50,6 +50,9 @@ public class CitaServiceImpl implements CitaService {
         cita.setFecha(request.getFecha());
         cita.setHora(request.getHora());
         cita.setMotivo(request.getMotivo());
+        if (request.getEstado() != null) {
+            cita.setEstado(request.getEstado());
+        }
         return toResponse(citaRepository.save(cita));
     }
 
