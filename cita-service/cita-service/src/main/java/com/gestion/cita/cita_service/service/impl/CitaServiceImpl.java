@@ -39,15 +39,7 @@ public class CitaServiceImpl implements CitaService {
                 .estado("PENDIENTE")
                 .build();
 
-    }
-
-    private void setUpdate(Cita cita, CitaDto citaDto) {
-        cita.setPacienteId(citaDto.getPacienteId());
-        cita.setDoctorId(citaDto.getDoctorId());
-        cita.setFecha(LocalDate.now());
-        cita.setHora(LocalTime.now());
-        cita.setMotivo(citaDto.getMotivo());
-        cita.setEstado(citaDto.getEstado());
+        return toResponse(citaRepository.save(cita));
     }
 
     @Override

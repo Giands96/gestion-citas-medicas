@@ -1,0 +1,8 @@
+target/
+.idea/
+*.iml
+.git/
+.gitignore
+node_modules/
+*.md
+postgresql/

@@ -4,62 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1fd18594-90d2-4fa6-b0b1-65df8850fd5e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/auth-service.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/betterCommentsSettings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/auth-service.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="1fd18594-90d2-4fa6-b0b1-65df8850fd5e" name="Changes" comment="refactor: relocalizar carpeta raíz de proyecto">
+      <change beforePath="$PROJECT_DIR$/../../api-gateway/api.gateway/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../api-gateway/api.gateway/src/main/resources/application.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/gestion/auth/auth_service/AuthServiceApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/gestion/auth/auth_service/auth/controller/AuthController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/gestion/auth/auth_service/auth/dto/CrearCredencialRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/gestion/auth/auth_service/auth/dto/CredencialResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/gestion/auth/auth_service/auth/dto/LoginRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/gestion/auth/auth_service/auth/dto/LoginResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/gestion/auth/auth_service/auth/security/PasswordConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/gestion/auth/auth_service/auth/service/AuthService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/gestion/auth/auth_service/bootstrap/RoleSeeder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/gestion/auth/auth_service/credential/entity/Credencial.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/gestion/auth/auth_service/credential/repository/CredencialRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/gestion/auth/auth_service/entity/Rol.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/gestion/auth/auth_service/entity/Usuario.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/gestion/auth/auth_service/exceptions/EmailAlreadyExists.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/gestion/auth/auth_service/exceptions/ErrorResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/gestion/auth/auth_service/exceptions/GlobalExceptionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/gestion/auth/auth_service/role/Rol.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/gestion/auth/auth_service/role/repository/RolRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/gestion/auth/auth_service/security/CustomUserDetails.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/gestion/auth/auth_service/security/CustomUserDetailsService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/gestion/auth/auth_service/security/DataSeeder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/gestion/auth/auth_service/security/JwtAuthenticationFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/gestion/auth/auth_service/security/JwtService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/gestion/auth/auth_service/security/SecurityConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/resources/application.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/resources/db/migration/V1__create_auth_schema.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/test/java/com/gestion/auth/auth_service/AuthServiceApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/trello/auth/auth_service/dto/AuthResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/trello/auth/auth_service/dto/LoginRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/trello/auth/auth_service/dto/RegisterRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/trello/auth/auth_service/dto/UserResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/trello/auth/auth_service/entity/Role.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/trello/auth/auth_service/entity/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/trello/auth/auth_service/exception/EmailAlreadyExistsException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/trello/auth/auth_service/exception/ErrorResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/trello/auth/auth_service/exception/GlobalExceptionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/trello/auth/auth_service/exception/InvalidCredentialsException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/trello/auth/auth_service/repository/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cita-service/cita-service/src/main/java/com/gestion/cita/cita_service/service/impl/CitaServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../cita-service/cita-service/src/main/java/com/gestion/cita/cita_service/service/impl/CitaServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../user-service/user-service/src/main/java/com/gestion/user/user_service/UserServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../user-service/user-service/src/main/java/com/gestion/user/user_service/UserServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../user-service/user-service/src/main/java/com/gestion/user/user_service/bootstrap/DataSeeder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../user-service/user-service/src/main/java/com/gestion/user/user_service/client/AuthServiceClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../user-service/user-service/src/main/java/com/gestion/user/user_service/client/dto/CredencialRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../user-service/user-service/src/main/java/com/gestion/user/user_service/client/dto/CredencialResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../user-service/user-service/src/main/java/com/gestion/user/user_service/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../user-service/user-service/src/main/java/com/gestion/user/user_service/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../user-service/user-service/src/main/java/com/gestion/user/user_service/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../user-service/user-service/src/main/java/com/gestion/user/user_service/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../user-service/user-service/src/main/java/com/gestion/user/user_service/service/impl/UsuarioServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../user-service/user-service/src/main/java/com/gestion/user/user_service/service/impl/UsuarioServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../user-service/user-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../user-service/user-service/src/main/resources/application.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,20 +59,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.AuthServiceApplication.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "feature/proyecto-1,0",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/GESTION CITAS MEDICAS/auth-service/auth-service/pom.xml",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.AuthServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/proyecto-1,0&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/GESTION CITAS MEDICAS/auth-service/auth-service/pom.xml&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="AuthServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.gestion.auth.auth_service.AuthServiceApplication" />
@@ -144,6 +101,19 @@
       <option name="presentableId" value="Default" />
       <updated>1781466848723</updated>
     </task>
+    <task id="LOCAL-00001" summary="refactor: relocalizar carpeta raíz de proyecto">
+      <option name="closed" value="true" />
+      <created>1781641691905</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1781641691905</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="refactor: relocalizar carpeta raíz de proyecto" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: relocalizar carpeta raíz de proyecto" />
   </component>
 </project>

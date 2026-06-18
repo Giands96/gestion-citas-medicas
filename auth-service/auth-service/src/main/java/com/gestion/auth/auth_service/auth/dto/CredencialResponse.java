@@ -1,4 +1,4 @@
-package com.gestion.user.user_service.client.dto;
+package com.gestion.auth.auth_service.auth.dto;
 
 public record CredencialResponse(
         Long id,

@@ -4,50 +4,45 @@ server:
 spring:
   application:
     name: api-gateway
-
   cloud:
     gateway:
       server:
         webflux:
-          discovery:
-            locator:
-              enabled: true
-              lower-case-service-id: true
           routes:
-              # DEFINIR RUTAS DE LOS MICROSERVICIOS
-              # RUTA AUTHENTICATION
             - id: auth-service
-              uri: lb://auth-service
+              uri: http://auth-service:8081
               predicates:
-                - Path=/auth/**
-              # RUTA USER
+                - Path=/api/auth/**
             - id: user-service
-              uri: lb://user-service
+              uri: http://user-service:8082
               predicates:
-                - Path=/api/users/**,/api/pacientes/**,/api/doctores/**
-              # RUTA CITA
+                - Path=/api/users/**
             - id: cita-service
-              uri: lb://cita-service
+              uri: http://cita-service:8083
               predicates:
-                  - Path=/api/citas/**
-              # RUTA MEDICAL
+                - Path=/api/citas/**
             - id: medical-service
-              uri: lb://medical-service
+              uri: http://medical-service:8084
               predicates:
-                  - Path=/api/medicals/**
-              # RUTA NOTIFICACION
+                - Path=/api/medicals/**
             - id: notification-service
-              uri: lb://notification-service
+              uri: http://notification-service:8085
               predicates:
-                  - Path=/api/notifications/**
-# Config Eureka Cliente
+                - Path=/api/notifications/**
+
 eureka:
-    client:
-        service-url:
-          defaultZone: http://localhost:8761/eureka/
-        register-with-eureka: true
-        fetch-registry: true
-# Configuración de Actuator para exponer endpoints de salud e información
+  client:
+    enabled: true
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:8761/eureka/}
+  instance:
+    prefer-ip-address: true
+    hostname: api-gateway
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+
 management:
   endpoints:
     web:
