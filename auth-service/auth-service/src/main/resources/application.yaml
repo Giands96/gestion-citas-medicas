@@ -3,11 +3,7 @@ server:
 
 spring:
   flyway:
-    enabled: true
-    schemas: auth_service
-    default-schema: auth_service
-    locations: classpath:db/migration
-    baseline-on-migrate: true
+    enabled: false
   application:
     name: auth-service
 
@@ -26,8 +22,8 @@ spring:
           default_schema: auth_service
 
 jwt:
-  secret: Zd2W3jBD8D2xFUSNPywUHDFeuFunANkdKKnaIQzFjbj
-  expiration: 3600000
+  secret: ${JWT_SECRET:Zd2W3jBD8D2xFUSNPywUHDFeuFunANkdKKnaIQzFjbj}
+  expiration: ${JWT_EXPIRATION:3600000}
 
 eureka:
   client:
@@ -35,6 +31,10 @@ eureka:
       defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka/}
   instance:
     prefer-ip-address: true
+
+internal:
+  gateway:
+    secret: ${INTERNAL_GATEWAY_SECRET:5rO2rtldA8350502DreTcvFu9n2s8v7Xo1j6z9w0}
 
 management:
   endpoints:

@@ -4,6 +4,8 @@ import com.gestion.medical.medical_service.dto.DoctorRequest;
 import com.gestion.medical.medical_service.dto.DoctorResponse;
 import com.gestion.medical.medical_service.entity.Doctor;
 import com.gestion.medical.medical_service.entity.Especialidad;
+import com.gestion.medical.medical_service.exception.DuplicateResourceException;
+import com.gestion.medical.medical_service.exception.ResourceNotFoundException;
 import com.gestion.medical.medical_service.repository.DoctorRepository;
 import com.gestion.medical.medical_service.repository.EspecialidadRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,10 +25,10 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public DoctorResponse crear(DoctorRequest request) {
         if (doctorRepository.existsByUsuarioId(request.getUsuarioId())) {
-            throw new IllegalArgumentException("El usuario ya está registrado como doctor");
+            throw new DuplicateResourceException("El usuario ya está registrado como doctor");
         }
         Especialidad especialidad = especialidadRepository.findById(request.getEspecialidadId())
-                .orElseThrow(() -> new RuntimeException("Especialidad no encontrada"));
+                .orElseThrow(() -> new ResourceNotFoundException("Especialidad no encontrada"));
         Doctor entity = Doctor.builder()
                 .usuarioId(request.getUsuarioId())
                 .especialidad(especialidad)
@@ -40,7 +42,7 @@ public class DoctorServiceImpl implements DoctorService {
     @Transactional(readOnly = true)
     public DoctorResponse obtenerPorId(Long id) {
         Doctor entity = doctorRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Doctor no encontrado"));
+                .orElseThrow(() -> new ResourceNotFoundException("Doctor no encontrado"));
         return toResponse(entity);
     }
 
@@ -63,9 +65,9 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public DoctorResponse actualizar(Long id, DoctorRequest request) {
         Doctor entity = doctorRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Doctor no encontrado"));
+                .orElseThrow(() -> new ResourceNotFoundException("Doctor no encontrado"));
         Especialidad especialidad = especialidadRepository.findById(request.getEspecialidadId())
-                .orElseThrow(() -> new RuntimeException("Especialidad no encontrada"));
+                .orElseThrow(() -> new ResourceNotFoundException("Especialidad no encontrada"));
         entity.setUsuarioId(request.getUsuarioId());
         entity.setEspecialidad(especialidad);
         entity.setCmp(request.getCmp());
@@ -76,7 +78,7 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public void eliminar(Long id) {
         Doctor entity = doctorRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Doctor no encontrado"));
+                .orElseThrow(() -> new ResourceNotFoundException("Doctor no encontrado"));
         entity.setDisponible(false);
         doctorRepository.save(entity);
     }

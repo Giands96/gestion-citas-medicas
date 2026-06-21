@@ -39,6 +39,14 @@ eureka:
     prefer-ip-address: true
     hostname: api-gateway
 
+jwt:
+    secret: ${JWT_SECRET:Zd2W3jBD8D2xFUSNPywUHDFeuFunANkdKKnaIQzFjbj}
+    expiration: ${JWT_EXPIRATION:3600000}
+
+internal:
+  gateway:
+    secret: ${INTERNAL_GATEWAY_SECRET:5rO2rtldA8350502DreTcvFu9n2s8v7Xo1j6z9w0}
+
 logging:
   level:
     org.springframework.cloud.gateway: DEBUG

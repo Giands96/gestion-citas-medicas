@@ -1,3 +1,5 @@
+DROP SCHEMA IF EXISTS auth_service CASCADE;
+
 CREATE SCHEMA IF NOT EXISTS auth_service;
 
 CREATE TABLE IF NOT EXISTS auth_service.roles (

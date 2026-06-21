@@ -1,71 +1,43 @@
 package com.gestion.user.user_service.config;
 
+import com.gestion.user.user_service.security.InternalRequestFilter;
 import com.gestion.user.user_service.security.JwtAuthenticationEntryPoint;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
-import java.util.Arrays;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-@RequiredArgsConstructor
+@EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfig {
 
-    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+    @Autowired
+    private InternalRequestFilter internalRequestFilter;
+
+    @Autowired
+    private JwtAuthenticationEntryPoint authenticationEntryPoint;
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        return http
                 .csrf(AbstractHttpConfigurer::disable)
-                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .sessionManagement(s ->
+                        s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                // Respuesta 401 con body JSON cuando no está autenticado
+                .exceptionHandling(ex ->
+                        ex.authenticationEntryPoint(authenticationEntryPoint))
+                .addFilterBefore(internalRequestFilter,
+                        UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll()
-
-                        // Rutas de Usuarios
-                        //.requestMatchers("/api/users/**").hasRole("ADMIN")
-
-                        // Rutas de Pacientes
-                        //.requestMatchers(HttpMethod.POST, "/api/patients").hasAnyRole("ADMIN", "PACIENTE")
-                        //.requestMatchers(HttpMethod.GET, "/api/patients").hasRole("ADMIN")
-                        //.requestMatchers(HttpMethod.GET, "/api/patients/**").hasAnyRole("ADMIN", "MEDICO", "PACIENTE")
-
-                        // Rutas de Doctores
-                        //.requestMatchers(HttpMethod.POST, "/api/doctors").hasRole("ADMIN")
-                        //.requestMatchers(HttpMethod.GET, "/api/doctors").hasAnyRole("ADMIN", "PACIENTE")
-                        //.requestMatchers(HttpMethod.GET, "/api/doctors/**").hasAnyRole("ADMIN", "PACIENTE", "MEDICO")
-
-                        //.anyRequest().authenticated()
-                );
-        return http.build();
-    }
-
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000", "http://localhost:4200"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
-        configuration.setAllowedHeaders(Arrays.asList("*"));
-        configuration.setAllowCredentials(true);
-        configuration.setMaxAge(3600L);
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
+                        .anyRequest().authenticated()
+                )
+                .build();
     }
 }

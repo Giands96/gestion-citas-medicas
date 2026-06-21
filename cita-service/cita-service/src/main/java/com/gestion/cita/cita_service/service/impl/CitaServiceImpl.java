@@ -13,6 +13,8 @@ import com.gestion.cita.cita_service.client.dto.UsuarioResponse;
 import com.gestion.cita.cita_service.dto.CitaRequest;
 import com.gestion.cita.cita_service.dto.CitaResponse;
 import com.gestion.cita.cita_service.entity.Cita;
+import com.gestion.cita.cita_service.exception.InvalidDoctorException;
+import com.gestion.cita.cita_service.exception.InvalidPatientException;
 import com.gestion.cita.cita_service.errors.NoResponse;
 import com.gestion.cita.cita_service.repository.CitaRepository;
 import com.gestion.cita.cita_service.service.CitaService;
@@ -30,6 +32,9 @@ public class CitaServiceImpl implements CitaService {
 
     @Override
     public CitaResponse createCita(CitaRequest request) {
+        validarDoctor(request.getDoctorId());
+        validarPaciente(request.getPacienteId());
+
         Cita cita = Cita.builder()
                 .pacienteId(request.getPacienteId())
                 .doctorId(request.getDoctorId())
@@ -42,10 +47,55 @@ public class CitaServiceImpl implements CitaService {
         return toResponse(citaRepository.save(cita));
     }
 
+    private void validarDoctor(Long doctorId) {
+        DoctorResponse doctor;
+        try {
+            doctor = medicalServiceClient.obtenerDoctorPorId(doctorId);
+        } catch (Exception e) {
+            throw new InvalidDoctorException("El doctor con ID " + doctorId + " no existe en medical-service");
+        }
+
+        if (doctor.getEspecialidadId() == null) {
+            throw new InvalidDoctorException("El doctor con ID " + doctorId + " no tiene una especialidad asignada");
+        }
+
+        UsuarioResponse usuario;
+        try {
+            usuario = userServiceClient.obtenerUsuarioPorId(doctor.getUsuarioId());
+        } catch (Exception e) {
+            throw new InvalidDoctorException("El usuario asociado al doctor ID " + doctorId + " no existe en user-service");
+        }
+
+        if (!"MEDICO".equals(usuario.getRol())) {
+            throw new InvalidDoctorException(
+                    "El usuario ID " + doctor.getUsuarioId() + " no tiene rol MEDICO (rol actual: " + usuario.getRol() + ")"
+            );
+        }
+    }
+
+    private void validarPaciente(Long pacienteId) {
+        UsuarioResponse usuario;
+        try {
+            usuario = userServiceClient.obtenerUsuarioPorId(pacienteId);
+        } catch (Exception e) {
+            throw new InvalidPatientException("El paciente con ID " + pacienteId + " no existe en user-service");
+        }
+
+        if (!"PACIENTE".equals(usuario.getRol())) {
+            throw new InvalidPatientException(
+                    "El usuario ID " + pacienteId + " no tiene rol PACIENTE (rol actual: " + usuario.getRol() + ")"
+            );
+        }
+    }
+
     @Override
     public CitaResponse updateCita(Long id, CitaRequest request) {
         Cita cita = citaRepository.findById(id)
                 .orElseThrow(() -> new NoResponse("Cita no encontrada"));
+
+        validarDoctor(request.getDoctorId());
+        validarPaciente(request.getPacienteId());
+
         cita.setPacienteId(request.getPacienteId());
         cita.setDoctorId(request.getDoctorId());
         cita.setFecha(request.getFecha());

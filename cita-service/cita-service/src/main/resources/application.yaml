@@ -26,12 +26,11 @@ eureka:
   instance:
     prefer-ip-address: true
 
-jwt:
-  secret: ${JWT_SECRET:PrOY3ct0nlyS3cr3tK3yPrOY3ct0nlyS3cr3tK3y}
-  expiration: ${JWT_EXPIRATION:86400000}
-
 management:
   endpoints:
     web:
       exposure:
         include: health,info
+internal:
+  gateway:
+    secret: ${INTERNAL_GATEWAY_SECRET:5rO2rtldA8350502DreTcvFu9n2s8v7Xo1j6z9w0}

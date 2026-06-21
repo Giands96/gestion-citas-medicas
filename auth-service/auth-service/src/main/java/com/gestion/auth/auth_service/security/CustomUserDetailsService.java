@@ -19,7 +19,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         Credencial credencial = credentialRepository.findByCorreo(email)
                 .orElseThrow(() ->
-                        new UsernameNotFoundException("Credenciales no encontradas")//* No mencionar el correo para evitar dar pistas a posibles atacantes
+                        new UsernameNotFoundException("Credenciales no encontradas")
                 );
 
         return new CustomUserDetails(credencial);

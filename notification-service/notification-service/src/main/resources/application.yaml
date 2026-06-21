@@ -1,3 +1,19 @@
+server:
+  port: ${SERVER_PORT:8085}
+
 spring:
   application:
     name: notification-service
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+
+internal:
+  gateway:
+    secret: ${INTERNAL_GATEWAY_SECRET:5rO2rtldA8350502DreTcvFu9n2s8v7Xo1j6z9w0}

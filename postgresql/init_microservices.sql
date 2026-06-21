@@ -3,6 +3,14 @@
 -- SCHEMAS POR MICROSERVICIO
 -- ============================================================
 
+DROP SCHEMA IF EXISTS auth_service CASCADE;
+DROP SCHEMA IF EXISTS user_service CASCADE;
+DROP SCHEMA IF EXISTS patient_service CASCADE;
+DROP SCHEMA IF EXISTS doctor_service CASCADE;
+DROP SCHEMA IF EXISTS appointment_service CASCADE;
+DROP SCHEMA IF EXISTS report_service CASCADE;
+DROP SCHEMA IF EXISTS notification_service CASCADE;
+
 CREATE SCHEMA IF NOT EXISTS auth_service;
 CREATE SCHEMA IF NOT EXISTS user_service;
 CREATE SCHEMA IF NOT EXISTS patient_service;

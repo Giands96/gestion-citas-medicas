@@ -47,6 +47,7 @@ services:
       - "8080:8080"
     environment:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
+      INTERNAL_GATEWAY_SECRET: 5rO2rtldA8350502DreTcvFu9n2s8v7Xo1j6z9w0
     depends_on:
       eureka-server:
         condition: service_healthy
@@ -59,14 +60,15 @@ services:
       dockerfile: Dockerfile
     container_name: auth-service
     restart: always
-    ports:
-      - "8081:8081"
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/clinica_db?currentSchema=auth_service
       SPRING_DATASOURCE_USERNAME: admin
       SPRING_DATASOURCE_PASSWORD: admin123
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
       JPA_DDL_AUTO: validate
+      JWT_SECRET: Zd2W3jBD8D2xFUSNPywUHDFeuFunANkdKKnaIQzFjbj
+      JWT_EXPIRATION: 3600000
+      INTERNAL_GATEWAY_SECRET: 5rO2rtldA8350502DreTcvFu9n2s8v7Xo1j6z9w0
     depends_on:
       postgres:
         condition: service_healthy
@@ -81,8 +83,6 @@ services:
       dockerfile: Dockerfile
     container_name: user-service
     restart: always
-    ports:
-      - "8082:8082"
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/clinica_db
       SPRING_DATASOURCE_USERNAME: admin
@@ -91,6 +91,9 @@ services:
       SPRING_FLYWAY_USER: admin
       SPRING_FLYWAY_PASSWORD: admin123
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
+      JWT_SECRET: Zd2W3jBD8D2xFUSNPywUHDFeuFunANkdKKnaIQzFjbj
+      JWT_EXPIRATION: 3600000
+      INTERNAL_GATEWAY_SECRET: 5rO2rtldA8350502DreTcvFu9n2s8v7Xo1j6z9w0
     depends_on:
       postgres:
         condition: service_healthy
@@ -105,13 +108,12 @@ services:
       dockerfile: Dockerfile
     container_name: medical-service
     restart: always
-    ports:
-      - "8084:8084"
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/clinica_db
       SPRING_DATASOURCE_USERNAME: admin
       SPRING_DATASOURCE_PASSWORD: admin123
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
+      INTERNAL_GATEWAY_SECRET: 5rO2rtldA8350502DreTcvFu9n2s8v7Xo1j6z9w0
     depends_on:
       postgres:
         condition: service_healthy
@@ -126,13 +128,14 @@ services:
       dockerfile: Dockerfile
     container_name: cita-service
     restart: always
-    ports:
-      - "8083:8083"
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/clinica_db
       SPRING_DATASOURCE_USERNAME: admin
       SPRING_DATASOURCE_PASSWORD: admin123
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
+      JWT_SECRET: Zd2W3jBD8D2xFUSNPywUHDFeuFunANkdKKnaIQzFjbj
+      JWT_EXPIRATION: 3600000
+      INTERNAL_GATEWAY_SECRET: 5rO2rtldA8350502DreTcvFu9n2s8v7Xo1j6z9w0
     depends_on:
       postgres:
         condition: service_healthy
@@ -147,11 +150,10 @@ services:
       dockerfile: Dockerfile
     container_name: notification-service
     restart: always
-    ports:
-      - "8085:8085"
     environment:
       SERVER_PORT: 8085
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
+      INTERNAL_GATEWAY_SECRET: 5rO2rtldA8350502DreTcvFu9n2s8v7Xo1j6z9w0
     depends_on:
       eureka-server:
         condition: service_healthy

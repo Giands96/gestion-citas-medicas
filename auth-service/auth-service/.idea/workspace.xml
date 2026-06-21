@@ -5,17 +5,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1fd18594-90d2-4fa6-b0b1-65df8850fd5e" name="Changes" comment="refactor: relocalizar carpeta raíz de proyecto">
+      <change afterPath="$PROJECT_DIR$/../../api-gateway/api.gateway/src/main/java/com/gestion/api/api/gateway/jwt/AuthenticationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../api-gateway/api.gateway/src/main/java/com/gestion/api/api/gateway/jwt/JwtUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../cita-service/cita-service/src/main/java/com/gestion/cita/cita_service/security/InternalRequestFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../user-service/user-service/src/main/java/com/gestion/user/user_service/security/InternalRequestFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../user-service/user-service/src/main/java/com/gestion/user/user_service/security/JwtUserDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../API_FLOW_TESTING.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../API_FLOW_TESTING.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../API_FLUJO_CURLS.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../API_FLUJO_CURLS.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../api-gateway/api.gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../api-gateway/api.gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../api-gateway/api.gateway/src/main/java/com/gestion/api/api/gateway/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../api-gateway/api.gateway/src/main/java/com/gestion/api/api/gateway/config/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../api-gateway/api.gateway/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../api-gateway/api.gateway/src/main/resources/application.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestion/auth/auth_service/security/CustomUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestion/auth/auth_service/security/CustomUserDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestion/auth/auth_service/security/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestion/auth/auth_service/security/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestion/auth/auth_service/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestion/auth/auth_service/security/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V1__create_auth_schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V1__create_auth_schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cita-service/cita-service/src/main/java/com/gestion/cita/cita_service/controller/CitaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../cita-service/cita-service/src/main/java/com/gestion/cita/cita_service/controller/CitaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cita-service/cita-service/src/main/java/com/gestion/cita/cita_service/security/JwtAuthenticationFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cita-service/cita-service/src/main/java/com/gestion/cita/cita_service/security/JwtService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cita-service/cita-service/src/main/java/com/gestion/cita/cita_service/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../cita-service/cita-service/src/main/java/com/gestion/cita/cita_service/security/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../cita-service/cita-service/src/main/java/com/gestion/cita/cita_service/service/impl/CitaServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../cita-service/cita-service/src/main/java/com/gestion/cita/cita_service/service/impl/CitaServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cita-service/cita-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../cita-service/cita-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../../docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../medical-service/medical-service/src/main/java/com/gestion/medical/medical_service/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../medical-service/medical-service/src/main/java/com/gestion/medical/medical_service/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../medical-service/medical-service/src/main/java/com/gestion/medical/medical_service/service/DoctorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../medical-service/medical-service/src/main/java/com/gestion/medical/medical_service/service/DoctorServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../medical-service/medical-service/src/main/java/com/gestion/medical/medical_service/service/EspecialidadServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../medical-service/medical-service/src/main/java/com/gestion/medical/medical_service/service/EspecialidadServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../medical-service/medical-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../medical-service/medical-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notification-service/notification-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../notification-service/notification-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../postgresql/init_microservices.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../postgresql/init_microservices.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../user-service/user-service/src/main/java/com/gestion/user/user_service/UserServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../user-service/user-service/src/main/java/com/gestion/user/user_service/UserServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../user-service/user-service/src/main/java/com/gestion/user/user_service/bootstrap/DataSeeder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../user-service/user-service/src/main/java/com/gestion/user/user_service/client/AuthServiceClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../user-service/user-service/src/main/java/com/gestion/user/user_service/client/dto/CredencialRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../user-service/user-service/src/main/java/com/gestion/user/user_service/client/dto/CredencialResponse.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../user-service/user-service/src/main/java/com/gestion/user/user_service/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../user-service/user-service/src/main/java/com/gestion/user/user_service/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../user-service/user-service/src/main/java/com/gestion/user/user_service/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../user-service/user-service/src/main/java/com/gestion/user/user_service/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../user-service/user-service/src/main/java/com/gestion/user/user_service/service/impl/UsuarioServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../user-service/user-service/src/main/java/com/gestion/user/user_service/service/impl/UsuarioServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../user-service/user-service/src/main/java/com/gestion/user/user_service/security/JwtAuthenticationFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../user-service/user-service/src/main/java/com/gestion/user/user_service/security/JwtService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../user-service/user-service/src/main/java/com/gestion/user/user_service/security/UserDetailsServiceImpl.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../user-service/user-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../user-service/user-service/src/main/resources/application.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,6 +51,7 @@
     <persistenceIdMap>
       <entry key="_D:/GESTION CITAS MEDICAS/auth-service/auth-service" value="3FEXaPHF2e676AYcHk6iV9FDuGu" />
       <entry key="_D:/GESTION CITAS MEDICAS/auth-service/auth-service/auth-service" value="3F8q3wrj7Y3dlB79oSWavMmXdAa" />
+      <entry key="_D:/PROYECTO DSW/gestion-citas-medicas/auth-service/auth-service" value="3FQWOsXcUDkaicSSHRzz5F7Y75U" />
     </persistenceIdMap>
   </component>
   <component name="Git.Settings">
@@ -69,7 +94,7 @@
     &quot;git-widget-placeholder&quot;: &quot;feature/proyecto-1,0&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/GESTION CITAS MEDICAS/auth-service/auth-service/pom.xml&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/PROYECTO DSW/gestion-citas-medicas/auth-service/auth-service/pom.xml&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;
   }
 }</component>
